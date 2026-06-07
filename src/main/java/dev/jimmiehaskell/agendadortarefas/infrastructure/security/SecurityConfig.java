@@ -1,5 +1,6 @@
 package dev.jimmiehaskell.agendadortarefas.infrastructure.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,18 +19,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
     // Instâncias de JwtUtil e UserDetailsService injetadas pelo Spring
-    private final dev.jimmiehaskell.agendadortarefas.infrastructure.security.JwtUtil jwtUtil;
-    private final dev.jimmiehaskell.agendadortarefas.infrastructure.security.UserDetailsServiceImpl userDetailsService;
-
-    // Construtor para injeção de dependências de JwtUtil e UserDetailsService
-    @Autowired
-    public SecurityConfig(dev.jimmiehaskell.agendadortarefas.infrastructure.security.JwtUtil jwtUtil, dev.jimmiehaskell.agendadortarefas.infrastructure.security.UserDetailsServiceImpl userDetailsService) {
-        this.jwtUtil = jwtUtil;
-        this.userDetailsService = userDetailsService;
-    }
+    private final JwtUtil jwtUtil;
+    private final UserDetailsServiceImpl userDetailsService;
 
     // Configuração do filtro de segurança
     @Bean
